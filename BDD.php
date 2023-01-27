@@ -51,7 +51,7 @@ foreach ($tabMedecin as $Medecin){
  </select><br>
  <label for="time">TIME:</label>
 
-<input type="time" id="time" name="time"><br>
+<input type="datetime-local" id="time" name="time"><br>
 <input type="submit" value="Send Request" />
 </form>
 <?php
@@ -59,11 +59,9 @@ if (isset($_POST["idMedecin"])&&($_POST["idPatient"])) {
     echo "id du medecin :". $_POST["idMedecin"];  
     echo "<br>";
     echo "id du patient :". $_POST["idPatient"];  
-    $time= $_POST['time'];
-    $idMedecin =$_POST['idMedecin'];
-    $idPatient = $_POST['idPatient'];
-    $requete2="INSERT INTO Consultation (Dateheure,idMedecin,idPatient)
-    Values ('time','idMedecin','idPatient'";
+    
+    $requete2 = "INSERT INTO `Consultation`( `Dateheure`, `idMedecin`, `idPatient`) VALUES ('" . $_POST['time'] . "','" . $_POST['idMedecin'] . "','" . $_POST['idPatient'] . "')";
+    $resultat2 = $GLOBALS["pdo"]->query($requete2);
 } 
 
 
