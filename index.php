@@ -1,8 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Gestion des médecins</title>
+  <title>ATP</title>
+  <form method="post">
+  <input type="submit" value="Logout 🚪" name="logout" id="logout-button"/>
+</form>
+
+<?php
+  if(isset($_POST['logout'])) {
+    header('Location: login.php');
+    exit();
+  }
+?>
   <style>
+#logout-button{
+  background-color: #D08D07;
+
+    }
    body {
   font-family: Arial, sans-serif;
 }
@@ -121,6 +135,7 @@ a.delete-button {
 }
 
 
+
   </style>
 </head>
 <body>
@@ -166,7 +181,7 @@ a.delete-button {
   }
 
   // Affichage du classement ATP
-  $sql = "SELECT * FROM `players` ORDER BY 'atp_rank' DESC";
+  $sql = "SELECT * FROM `players` ORDER BY `atp_rank` ASC";
   $stmt = $BasePDO->prepare($sql);
   $stmt->execute();
   $players = $stmt->fetchAll();
