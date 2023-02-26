@@ -1,37 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Php 4</title>
-</head>
-<style>body{background-color:#5D5085;}</style>
-<body>
-    <h2 style='color:red'>Exercice 4</h2>
-    <?php 
-    $a=12;$b=7;$c=-3;
-    $delta=pow($b,2)-4*($a*$c);
-    echo "<p>On cherche à résoudre l'équation <strong>".$a."x² +".$b."x +".$c." = 0 </strong></p>"; 
-    echo "<p>Commençons par calculer <strong>Δ</strong></p>";
-    echo "<p>Pour rappel <strong>Δ=b²-4ac</strong></p>";
-    echo "<p style='color:cyan'>Si Δ est positif, l'équation admet deux solutions réelles : </p><p style='color:cyan' >Z1 = (-b+√Δ)/2a</p><p style='color:cyan'>Z2 = (-b-√Δ)/2a";
-    echo "<p style='color:orange'>Si Δ est nulle, l'équation admet une solution réelle : </p> <p style='color:orange'>Z0 = -b/2a</p>";
-    echo "<p style='color:#FFFEAF'>Si Δ est négatif, l'équation n'admet pas de solution réelle mais admet bien deux solutions imaginaires (complexes)</p><p style='color:#FFFEAF'>ƶ1=(-b+<strong>i</strong>√Δ)/2a</p><p style='color:#FFFEAF'>ƶ2=(-b-<strong>i</strong>√Δ)/2a</p>";
-    echo "<p>Ici <strong>Δ=".$delta."</strong></p>";
-    if($delta>0){
-        echo"<p>L'équation admet deux solutions réelles</p>";
-        echo"<p>Z1= <strong>".(-$b+sqrt($delta))/2*$a."</strong></p>";
-        echo"<p>Z2= <strong>".(-$b-sqrt($delta))/2*$a."</strong></p>";
-    }
-    if($delta<0){
-        echo"<p>L'équation n'admet pas de solution réelle mais admet des<strong> solutions imaginaires ( complexes )</strong></p>";
-    }
-    if($delta==0){
-        echo"<p>L'équation admet une solution</p>";
-        echo"<p>Z0= <strong>".-$b/2*$a."</strong></p>";
-    }
-?>
+<?php
+// pour show les erreurs php sans aller changer la config, jl'ai jamais fait chez moi.. 
+error_reporting(E_ALL);    
+ini_set("display_errors", 1);
+
+class Personnage {
+    private $Speudo;
+    private $vie;
     
-</body>
-</html>
+    public function __construct($Speudo) {
+        $this->vie = 100;
+        $this->Speudo = $Speudo;
+    }
+
+    public function getSpeudo() {
+        return $this->Speudo;
+    }
+    
+    public function getVie() {
+        return $this->vie;
+    }
+    
+    public function attaquer($target) {
+        echo "<span style='color:blue'>" . $this->Speudo . "</span> <span style='color:red;font-weight:bold'>attaque</span> <span style='color:#9937CE'>" . $target->getSpeudo() . "</span><br><br>";
+        $target->defense(50);
+    }
+
+    public function defense($attaque) {
+        $this->vie -= $attaque;  // $this->vie = $this->vie - $attaque;
+        echo "<span style='color:#9937CE'>" . $this->Speudo . "</span> <span style='color:red;font-weight:bold'>subit</span> <span style='color:green'>" . $attaque . " points de dégâts</span> <br><br>";
+        
+        // Si la target a 0 PV ou - on ecrit "Target est mort"
+        if ($this->vie <= 0) {
+            echo "<span style='color:#9937CE'>" . $this->Speudo . "</span> <span style='color:red;font-weight:bold'>est mort☠️☠️☠️☠️</span><br><br>";
+        }
+    }
+}
+
+// INSTANCE
+$user1 = new Personnage("Juju");
+$user2 = new Personnage("Nunu");
+
+// Le user 1 attaque le user 2
+$user1->attaquer($user2);
+$user2->attaquer($user1);
+$user1->attaquer($user2); // ici il attaque deux fois pour le tuer (50-50=100) , a noter que pour faire ca mieux les degats pourraient etre pris en parametre et on pourrait faire par exemple une attaque de 70 une de 20 et une de 10
+
+// RESULTAT DE L4ATTAQUE
+echo "<br> <span style='color:white;background-color:black;padding:5px'>Résultat de l'attaque :</span><br><br><br>";
+echo "<span style='color:blue'>" . $user1->getSpeudo() . "</span> a <span style='color:green'>" . $user1->getVie() . "</span> points de vie <br>";
+echo "<span style='color:#9937CE'>" . $user2->getSpeudo() . "</span> a <span style='color:green'>" . $user2->getVie() . "</span> points de vie <br>";
+?>
