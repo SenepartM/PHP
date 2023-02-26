@@ -1,44 +1,55 @@
-<?php echo "Coucou"?>
+<?php
+class User {
+    private $Nom;
+    private $Prenom;
+    
+    public function afficheUser() {
+        echo "Je suis un User";
+    }
+}
+$user1 = new User();
+?>
+<table>
+  <thead>
+    <tr>
+      <th colspan="2"><center>User</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><center>Nom</td>
+      <td><center>String</td>
+    </tr>
+    <tr>
+      <td><center>Prénom</td>
+      <td><center>String</td>
+    </tr>
+    <tr>
+      <th colspan="2"><center>Méthodes</td>
+    </tr>
+    <tr>
+      <td><center>+afficheUser() : void</td>
+      <td><center>Affiche le message "Je suis un User"</td>
+    </tr>
+  </tbody>
+</table>
+<style>table {
+  border-collapse: collapse;
+  width: 100%;
+}
 
-<?php function NewTable(){
-    ?><table border=2>
-    <tr>
-      <td>&nbsp;</td>
-      <td>Knocky</td>
-      <td>Flor</td>
-      <td>Ella</td>
-      <td>Juan</td>
-    </tr>
-    <tr>
-      <td>Race</td>
-      <td>Jack Russell</td>
-      <td>Poodle</td>
-      <td>Streetdog</td>
-      <td>Cocker Spaniel</td>
-    </tr>
-    <tr>
-      <td>Age</td>
-      <td>16</td>
-      <td>9</td>
-      <td>10</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <td>Propriétaire</td>
-      <td>Belle-mère</td>
-      <td>Moi</td>
-      <td>Moi</td>
-      <td>Belle-soeur</td>
-    </tr>
-    <tr>
-      <td>Habitudes alimentaires</td>
-      <td>Mange tous les restes</td>
-      <td>Grignotte la nourriture</td>
-      <td>Mange copieusement</td>
-      <td>Mange jusqu'à ce qu'il éclate</td>
-    </tr>
-  </table><?php } ?>
-  <?php
-NewTable();?>
- <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
- <?php Newtable(); ?>
+th, td {
+  border: 1px solid #ddd;
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+</style>
